@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+<<<<<<< HEAD
+/net/t/macchiardi/Cours/ProjetProgReseau/src/jalon01/client.c
+=======
+/net/t/abodin003/Documents/ProjetProgReseaux/src/jalon01/client.c
+>>>>>>> 2c3ae288631ac50c41e7a44841751602234086cb
+stdlib.h
+-
+unistd.h
+-
+stdio.h
+-
+string.h
+-
+sys/types.h
+-
+sys/socket.h
+-
+netdb.h
+-
+
