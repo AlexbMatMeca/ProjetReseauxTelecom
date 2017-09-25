@@ -1,4 +1,4 @@
-# Install script for directory: /net/t/macchiardi/Cours/jalon01_stub/src/jalon01
+# Install script for directory: /net/t/macchiardi/Cours/ProjetProgReseau/src/jalon01
 
 # Set the install prefix
 IF(NOT DEFINED CMAKE_INSTALL_PREFIX)

@@ -14,6 +14,7 @@
 //	char sa_data[14];
 //};
 
+
 struct sockaddr_in serv_addr;
 
 
@@ -37,12 +38,12 @@ int main(int argc, char** argv)
 
 	int sock = do_socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 
-	init_serv_addr(4000, serv_addr);
+	init_serv_addr(argv[1], serv_addr);
 
 	struct in_addr addr = serv_addr.sin_addr;
-	do_bind(sock, serv_addr.sin_addr,length(addr));
+	do_bind(sock, serv_addr.sin_addr,sizeof(addr));
 
-	do_listen(sock, 20, serv_addr.sin_addr,length(addr));
+	do_listen(sock, 20, serv_addr.sin_addr,sizeof(addr));
 
 	return 0;
 }
@@ -80,7 +81,7 @@ int do_socket(int domain, int type, int protocol){
 //init_serv_addr()
 
 
-void init_serv_addr(const char* port, struct sockaddr_in *serv_addr){
+int init_serv_addr(const char* port, struct sockaddr_in *serv_addr){
 
 
 	int portno;
@@ -104,6 +105,8 @@ void init_serv_addr(const char* port, struct sockaddr_in *serv_addr){
 	// we bind on the tcp port specified
 
 	serv_addr->sin_port = htons (portno);
+
+	return 1;
 }
 
 
@@ -162,11 +165,13 @@ int do_listen(int sock, int backlog, const struct sockaddr *adr, int adrlen){
 }
 
 
-void do_accept(int socket, struct sockaddr* addr, socklen_t* addrlen){
-	if (accept(socket, addr, addrlen) == -1){
+int do_accept(int socket, struct sockaddr* addr, socklen_t* addrlen){
+	int a = accept(socket, addr, addrlen);
+	if (a == -1){
 		perror("listen");
 		exit(EXIT_FAILURE);
 	}
+	return a;
 
 }
 
